@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "a17a544c-bc16-46d7-8300-05d01ec2d742",
+		"name": "IncaaS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24236584"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Raul\",\r\n    \"lastName\":\"Santos\",\r\n    \"email\": \"lorenzo@mail.com\",\r\n    \"password\":\"1234\",\r\n    \"secretAnswer\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/auth/register-user",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Admin\",\r\n  \"lastName\": \"Root\",\r\n  \"email\": \"admin@email.com\",\r\n  \"password\": \"admin123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/auth/register-admin",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"lorenzo@mail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/auth/authenticate",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@email.com\",\r\n    \"password\":\"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/auth/authenticate",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Processo Judicial",
+			"item": [
+				{
+					"name": "Criar Processo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroProcesso\": \"1234567-89.2023.1.12.0004\",\n  \"vara\": \"Vara Cível 1\",\n  \"comarca\": \"Parnamirim\",\n  \"assunto\": \"Cobrança de dívida\",\n  \"status\": \"ATIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/processos",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"processos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Processo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numeroProcesso\": \"1234567-89.2023.1.12.0004\",\n    \"vara\": \"Vara Cível 12\",\n    \"comarca\": \"Natal\",\n    \"assunto\": \"Cobrança de dívida\",\n    \"status\": \"ATIVO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/processos/4",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"processos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Processos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/processos?status=ATIVO&comarca=Parnamirim",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"processos"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "ATIVO"
+								},
+								{
+									"key": "comarca",
+									"value": "Parnamirim"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Processo [ADMIN]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/processos/2",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"processos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Audiencia",
+			"item": [
+				{
+					"name": "Agendar Audiência",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dataHoraInicio\": \"2025-07-01T10:00:00Z\",\n  \"dataHoraFim\":    \"2025-07-01T11:00:00Z\",\n  \"tipo\": \"INSTRUCAO\",\n  \"local\": {\n    \"nome\": \"Sala 1\",\n    \"rua\": \"Rua Central\",\n    \"numero\": \"100\",\n    \"bairro\": \"Centro\",\n    \"cep\": \"59000-000\",\n    \"estado\": \"RN\",\n    \"pais\": \"Brasil\"\n  },\n  \"processoId\": 1\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/audiencias",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"audiencias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Audiência",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dataHoraInicio\": \"2025-07-01T10:30:00Z\",\n  \"dataHoraFim\":    \"2025-07-01T11:00:00Z\",\n  \"tipo\": \"JULGAMENTO\",\n  \"local\": {\n    \"nome\": \"Sala 1\",\n    \"rua\": \"Rua Central\",\n    \"numero\": \"100\",\n    \"bairro\": \"Centro\",\n    \"cep\": \"59000-000\",\n    \"estado\": \"RN\",\n    \"pais\": \"Brasil\"\n  },\n  \"processoId\": 1\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/audiencias/1",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"audiencias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Audiências",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/audiencias/agenda?comarca=Parnamirim&data=2025-07-01",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"audiencias",
+								"agenda"
+							],
+							"query": [
+								{
+									"key": "comarca",
+									"value": "Parnamirim"
+								},
+								{
+									"key": "data",
+									"value": "2025-07-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Audiências Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/audiencias/1",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"audiencias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Audiências Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{net}}/api/v1/audiencias/1",
+							"host": [
+								"{{net}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"audiencias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

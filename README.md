@@ -9,8 +9,8 @@ Este sistema permite o gerenciamento de **processos judiciais** e **audiências*
 ### 1. Clonar o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
-cd seu-projeto
+git clone https://github.com/raulmss/processos-judiciais-incaas.git
+cd processos-judiciais-incaas
 ```
 
 ### 2. Configurar o Banco de Dados
